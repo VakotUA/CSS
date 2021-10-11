@@ -30,6 +30,7 @@ body {
 	color: white;
 	background-color: #0e0e18;
 	padding: 9px;
+	padding-left: 0;
 	z-index: 1000;
 }
 
@@ -45,6 +46,24 @@ body {
 	--sidebar-width-: 240px;
 	width: var(--sidebar-width-, 240px);
 }
+
+@media screen and (max-width: 600px) {
+	.sidebar,
+	.sidebar.active {
+		--sidebar-width-: 100%;
+	}
+	.sidebar {
+		height: 72px;
+	}
+	.sidebar.active {
+		height: 100%;
+	}
+	.container {
+		width: 100%;
+		margin-top: 72px;
+	}
+}
+
 
 
 
@@ -82,7 +101,6 @@ i {
 
 .sidebar-header {
 	width: var(--sidebar-width-, 240px);
-	/*height: 144px;*/
 	position: fixed;
 	left: 0;
 	top: 0;
@@ -155,27 +173,85 @@ i {
 	cursor: pointer;
 }
 
+@media screen and (max-width: 600px) {
+	.sidebar .sidebar-header {
+		height: 72px;
+	}
+	.sidebar.active .sidebar-header {
+		height: 131px;
+	}
+
+	.sidebar .sidebar-search {
+		opacity: 0;
+		pointer-events: none;
+	}
+	.sidebar.active .sidebar-search {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.sidebar .logo,
+	.sidebar.active .logo {
+		opacity: 1;
+	}
+}
+
 
 
 /* nav-links */
 
 .nav-links {
-	height: calc(100% - 122px - 63px);
-	margin: 122px 0 63px 0;
-	overflow: visible;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 240px;
+	direction: rtl;
 	overflow-y: scroll;
 }
-.nav-links::-webkit-scrollbar {
-	display: none;
+
+.nav-links > * {
+	direction: ltr;
+}
+
+.sidebar .nav-links,
+.sidebar.active .nav-links {
+	height: calc(100% - 131px - 77px);
+	margin: 131px 0 68px 0;
 }
 
 .nav-links li {
-	width: 100%;
 	height: 54px;
 	margin-bottom: 5px;
 	display: flex;
 	align-items: center;
 	position: relative;
+	overflow: visible;
+}
+
+.sidebar .nav-links {
+	width: 240px;
+}
+.sidebar .nav-links li {
+	width: 54px;
+	margin-right: calc(100% - var(--sidebar-width-, 240px) + 18px);
+}
+.sidebar.active .nav-links li {
+	width: 100%;
+	margin-right: 0;
+}
+@media screen and (max-width: 600px) {
+	.sidebar .nav-links {
+		width: 100%;
+	}
+	.sidebar .nav-links li,
+	.sidebar.active .nav-links li {
+		width: 100%;
+		margin-right: 0;
+	}
+}
+
+.nav-links li:last-child {
+	margin-bottom: 0;
 }
 
 .nav-links a {
@@ -187,6 +263,7 @@ i {
 	text-decoration: none;
 	display: inline-flex;
 	padding-left: 54px;
+	margin-right: 9px;
 	overflow: hidden;
 	position: relative;
 }
@@ -199,9 +276,53 @@ i {
 	left: 0;
 }
 
+.sidebar .link-name {
+	opacity: 0;
+}
+
+.sidebar.active .link-name {
+	opacity: 1;
+}
 .nav-links li:hover a {
 	color: #0e0e18;
 	background-color: white;
+}
+/* Custom scrollbar
+	.nav-links::-webkit-scrollbar-button {
+		display: none;
+	}
+	.nav-links::-webkit-scrollbar {
+		border-radius: 100px;
+		width: 9px;
+	}
+	.nav-links::-webkit-scrollbar-track {
+		border-radius: 100px;
+		background-color: #1d1b30;
+		border: 1px solid #0e0e18;
+	}
+	.nav-links::-webkit-scrollbar-thumb {
+		border-radius: 100px;
+		background-color: #0e0e18;
+		border: 2px solid #1d1b30;
+	}
+*/
+
+.nav-links::-webkit-scrollbar-button {
+	display: none;
+}
+.nav-links::-webkit-scrollbar {
+	border-radius: 100px;
+	width: 9px;
+}
+.nav-links::-webkit-scrollbar-track {
+	border-radius: 100px;
+	background-color: transparent;
+}
+.nav-links::-webkit-scrollbar-thumb {
+	min-height: 72px;
+	border-radius: 100px;
+	border: 3px solid #0e0e18;
+	background-color: rgba(255,255,255,0.25);
 }
 
 
@@ -214,14 +335,13 @@ i {
 	position: absolute;
 	text-align: center;
 	line-height: 50px;
-	left: 72px;
+	left: 63px;
 	color: #0e0e18;
 	background-color: white;
 	border-radius: 10px;
 	opacity: 0;
 	transform: translateX(0);
 	pointer-events: none;
-	/*z-index: 1000;*/
 }
 .nav-links li:hover .tooltip {
 	opacity: 1;
@@ -239,6 +359,7 @@ i {
 .user {
 	width: var(--sidebar-width-, 240px);
 	position: fixed;
+	overflow: hidden;
 	left: 0;
 	bottom: 0;
 	height: 72px;
@@ -258,7 +379,7 @@ i {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
-	flex-wrap: wrap;
+	/*flex-wrap: wrap;*/
 	overflow: hidden;
 }
 
@@ -287,138 +408,14 @@ i {
 	opacity: 0;
 }
 
-
-
-
-
-
-
-/* sidebar */
-
-/*.sidebar {
-	width: 72px;
-	height: 100%;
-	position: fixed;
-	font-size: 18px;
-	color: white;
-	background-color: #0e0e18;
-	padding: 9px;
-	z-index: 1000;
-	overflow-y: scroll;
-}*/
-/*.sidebar::-webkit-scrollbar {
-	width: 0;
-	height: 100%;
-	background-color: transparent;
-	pointer-events: none;
-}*/
-
-/*.sidebar .link-name,
-.sidebar .nav_links li input,
-.sidebar .logo-image,
-.sidebar .company-name,
-.sidebar .profile {
-	opacity: 0;
-	pointer-events: none;
-}*/
-
-
-
-
-
-
-
-/* sidebar active */
-
-/*.sidebar.active {
-	width: 240px;
-}*/
-
-/*.sidebar.active .link-name,
-.sidebar.active .nav_links li input,
-.sidebar.active .company-name,
-.sidebar.active .profile {
-	position: static;
-	opacity: 1;
-	pointer-events: auto;
-}
-.sidebar.active .logo-image {
-	position: absolute;
-	opacity: 1;
-	pointer-events: auto;
-}
-.sidebar.active .tooltip {
-	display: none;
-}*/
-
-
-
-
-
-
-
-/* phone version */
-
-/*@media screen and (max-width: 600px) {
-	.sidebar {
-		width: 100%;
+@media screen and (max-width: 600px) {
+	.sidebar .user {
+		height: 0;
+	}
+	.sidebar.active .user {
 		height: 72px;
 	}
-	.sidebar .nav_links,
-	.sidebar .user {
-		width: 100%;
-		opacity: 0;
-		pointer-events: none;
-	}
-
-	.sidebar .logo-image,
-	.sidebar .company-name {
-		opacity: 1;
-		pointer-events: auto;
-	}
-
-	.sidebar.active {
-		width: 100%;
-		height: 100%;
-	}
-	.sidebar.active .nav_links,
-	.sidebar.active .user {
-		width: 100%;
-		opacity: 1;
-		pointer-events: auto;
-	}
-
-
-	.container {
-		width: 100%;
-		margin-top: 72px;
-	}
 }
-
-@media screen and (max-height: 720px) {
-	.sidebar,
-	.sidebar.active {
-		overflow-x: hidden;
-		overflow-y: scroll;
-	}
-	.sidebar .exit-button {
-		left: 0;
-	}
-	.sidebar.active .exit-button {
-		left: calc(100% - 63px);
-	}
-	.sidebar .user {
-		position: absolute;
-	}
-	.sidebar.active .user {
-		position: fixed;
-	}
-	.sidebar .user,
-	.sidebar.active .user {
-		top: calc(100% - 72px);
-	}
-}*/
-
 
 
 
@@ -462,18 +459,6 @@ i {
 	position: absolute;
 }
 
-/*.loader::before {
-	content: '';
-	width: 12.5%;
-	height: 12.5%;
-	background-color: white;
-	top: 0;
-	right: 0;
-	transform: translate(-50%, 50%);
-	position: absolute;
-	border-radius: 50%;
-}*/
-
 @keyframes spin {
 	0% {
 		transform: rotate(45deg);
@@ -500,3 +485,7 @@ i {
 		content: 'Loading';
 	}
 }
+
+
+
+
