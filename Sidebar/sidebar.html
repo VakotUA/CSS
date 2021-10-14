@@ -34,16 +34,24 @@
 	</head>
 
 	<body>
+		<!-- sidebar -->
+
 		<div id="sidebar" class="sidebar active">
+
+			<!-- header-block -->
+
 			<div class="sidebar-header">
 				<div class="logo">
 					<img class="logo-image" src="./images/Ломоть.png" alt=""></img>
 					<span class="company-name">Company</span>
 				</div>
-				<div onclick="toggleSidebar()" class="sidebar-toggle-button">
+				<div onclick="toggleSidebar()" 
+					class="sidebar-toggle-button button" 
+					style="--sidebar-button-color: red; --sidebar-button-text-color: black;">
 					<i class="bi bi-list"></i>
 				</div>
-				<div class="sidebar-search">
+				<div class="sidebar-search button"
+					style="--sidebar-button-color: yellow; --sidebar-button-text-color: black;">
 					<div onclick="toggleSidebar()" class="search-button">
 						<i class="bi bi-search"></i>
 					</div>
@@ -51,148 +59,44 @@
 				</div>
 			</div>
 
+			<!-- links-block -->
+
 			<ul class="nav-links">
-				<li>
+				<li style="--sidebar-navigation-color: green">
 					<a href="#">
 						<i class="bi bi-house"></i>
 						<span class="link-name">Home</span>
 					</a>
 					<div class="tooltip">Home</div>
 				</li>
-				<li>
+				<li style="--sidebar-navigation-color: lightblue">
 					<a href="#">
 						<i class="bi bi-bar-chart"></i>
 						<span class="link-name">Rating</span>
 					</a>
 					<div class="tooltip">Rating</div>
 				</li>
-				<li>
+				<li style="--sidebar-navigation-color: white">
 					<a href="#">
 						<i class="bi bi-star"></i>
 						<span class="link-name">Favorite</span>
 					</a>
 					<div class="tooltip">Favorite</div>
- 				<li>
+ 				<li style="--sidebar-navigation-color: yellow">
 					<a href="#">
 						<i class="bi bi-calendar2-date"></i>
 						<span class="link-name">Calendar</span>
 					</a>
 					<div class="tooltip">Calendar</div>
 				</li>
-				<li>
+				<li style="--sidebar-navigation-color: red">
 					<a href="#">
 						<i class="bi bi-gear"></i>
 						<span class="link-name">Settings</span>
 					</a>
 					<div class="tooltip">Settings</div>
 				</li>
-				<!--<li>
-					<a href="#">
-						<i class="bi bi-image"></i>
-						<span class="link-name">LinkName</span>
-					</a>
-					<div class="tooltip">LinkName</div>
-				</li>
-				<li>
-					<a href="#">
-						<i class="bi bi-image"></i>
-						<span class="link-name">LinkName</span>
-					</a>
-					<div class="tooltip">LinkName</div>
-				</li>
-				<li>
-					<a href="#">
-						<i class="bi bi-image"></i>
-						<span class="link-name">LinkName</span>
-					</a>
-					<div class="tooltip">LinkName</div>
-				</li>
-				<li>
-					<a href="#">
-						<i class="bi bi-image"></i>
-						<span class="link-name">LinkName</span>
-					</a>
-					<div class="tooltip">LinkName</div>
-				</li>
-				<li>
-					<a href="#">
-						<i class="bi bi-image"></i>
-						<span class="link-name">LinkName</span>
-					</a>
-					<div class="tooltip">LinkName</div>
-				</li>
-				<li>
-					<a href="#">
-						<i class="bi bi-image"></i>
-						<span class="link-name">LinkName</span>
-					</a>
-					<div class="tooltip">LinkName</div>
-				</li>
-				<li>
-					<a href="#">
-						<i class="bi bi-image"></i>
-						<span class="link-name">LinkName</span>
-					</a>
-					<div class="tooltip">LinkName</div>
-				</li>
-				<li>
-					<a href="#">
-						<i class="bi bi-image"></i>
-						<span class="link-name">LinkName</span>
-					</a>
-					<div class="tooltip">LinkName</div>
-				</li>
-				<li>
-					<a href="#">
-						<i class="bi bi-image"></i>
-						<span class="link-name">LinkName</span>
-					</a>
-					<div class="tooltip">LinkName</div>
-				</li>
-				<li>
-					<a href="#">
-						<i class="bi bi-image"></i>
-						<span class="link-name">LinkName</span>
-					</a>
-					<div class="tooltip">LinkName</div>
-				</li>
-
-				<li>
-					<a href="#">
-						<i class="bi bi-image"></i>
-						<span class="link-name">LinkName</span>
-					</a>
-					<div class="tooltip">LinkName</div>
-				</li>
-				<li>
-					<a href="#">
-						<i class="bi bi-image"></i>
-						<span class="link-name">LinkName</span>
-					</a>
-					<div class="tooltip">LinkName</div>
-				</li>
-				<li>
-					<a href="#">
-						<i class="bi bi-image"></i>
-						<span class="link-name">LinkName</span>
-					</a>
-					<div class="tooltip">LinkName</div>
-				</li>
-				<li>
-					<a href="#">
-						<i class="bi bi-image"></i>
-						<span class="link-name">LinkName</span>
-					</a>
-					<div class="tooltip">LinkName</div>
-				</li>
-				<li>
-					<a href="#">
-						<i class="bi bi-image"></i>
-						<span class="link-name">LinkName</span>
-					</a>
-					<div class="tooltip">LinkName</div>
-				</li>
-				<li>
+				<!-- <li style="--sidebar-navigation-color: green">
 					<a href="#">
 						<i class="bi bi-image"></i>
 						<span class="link-name">LinkName</span>
@@ -201,6 +105,7 @@
 				</li> -->
 			</ul>
 
+			<!-- user-block -->
 
 			<div class="user">
 				<div class="profile">
@@ -210,13 +115,16 @@
 						<div class="user-id">#0000</div>
 					</div>
 				</div>
-				<div class="exit-button">
+				<div class="exit-button button"
+					style="--sidebar-button-color: green; --sidebar-button-text-color: black;">
 					<i class="bi bi-door-open"></i>
 				</div>
 			</div>
 		</div>
 
-		<!-- Vakot Ind. -->
+		<!-- sidebar -->
+
+		<!-- content -->
 
 		<div class="container" style="text-align: center; padding: 25px;">
 			<div class="loader-block">
@@ -227,6 +135,7 @@
 			</div>
 		</div>
 
-		<!-- Vakot Ind. -->
+		<!-- content -->
 
 	</body>
+</html>

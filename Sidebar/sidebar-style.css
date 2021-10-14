@@ -1,3 +1,26 @@
+:root {
+	--sidebar-first-color: #0e0e18;		/* first main color */
+	--sidebar-second-color: #1d1b30;	/* second main color */
+
+	--sidebar-text-color: white;		/* text color */
+	/*--sidebar-navigation-color: white;	/* nav-links hover bg-color */
+
+	/*--sidebar-button-color: #1d1b30;	/* button's bg-color */
+	/*--sidebar-button-text-color: white;	/* button's text color */
+	
+	--sidebar-user-text-color: white;	/* user block text color */
+
+	--sidebar-scrollbar-color: rgba(255, 255, 255, 0.25); /* rgba(0, 0, 0, 0.25) or rgba(255, 255, 255, 0.25) */
+}
+
+.button { background-color: var(--sidebar-button-color, black); }
+.button:hover { background-color: var(--sidebar-button-text-color, white); }
+.button > * { color: var(--sidebar-button-text-color, white); }
+.button:hover > * { color: var(--sidebar-button-color, white); }
+
+/* #0e0e18 */
+/* #1d1b30 */
+
 * {
 	margin: 0;
 	padding: 0;
@@ -5,7 +28,7 @@
 	box-sizing: border-box;
 
 	font-family: 'Roboto', sans-serif;
-	transition: .5s;
+	transition: all .3s linear;
 }
 
 body {
@@ -13,22 +36,21 @@ body {
 }
 
 .container {
-	width: calc(100% - 74px);
+	width: calc(100% - 72px);
 	position: absolute;
 	right: 0;
 }
 
-/* #0e0e18 */
-/* #1d1b30 */
 
-/* sidebar-globals */
+
+/* sidebar */
 
 .sidebar {
 	height: 100%;
 	position: fixed;
 	font-size: 18px;
-	color: white;
-	background-color: #0e0e18;
+	color: var(--sidebar-text-color, black);
+	background-color: var(--sidebar-first-color, white);
 	padding: 9px;
 	padding-left: 0;
 	z-index: 1000;
@@ -39,18 +61,18 @@ body {
 /* sidebar-toggle */
 
 .sidebar {
-	--sidebar-width-: 72px;
-	width: var(--sidebar-width-, 240px);
+	--sidebar-width: 72px;
+	width: var(--sidebar-width, 240px);
 }
 .sidebar.active {
-	--sidebar-width-: 240px;
-	width: var(--sidebar-width-, 240px);
+	--sidebar-width: 240px;
+	width: var(--sidebar-width, 240px);
 }
 
 @media screen and (max-width: 600px) {
 	.sidebar,
 	.sidebar.active {
-		--sidebar-width-: 100%;
+		--sidebar-width: 100%;
 	}
 	.sidebar {
 		height: 72px;
@@ -76,7 +98,7 @@ body {
 	border-radius: 10px;
 	margin-right: 9px;
 	position: absolute;
-	background-color: #1d1b30;
+	background-color: var(--sidebar-second-color, black);
 	align-content: center;
 	overflow: hidden;
 }
@@ -100,13 +122,13 @@ i {
 /* sidebar-header */
 
 .sidebar-header {
-	width: var(--sidebar-width-, 240px);
+	width: var(--sidebar-width, 240px);
 	position: fixed;
 	left: 0;
 	top: 0;
 	padding: 9px 9px 5px 9px;
 	overflow: hidden;
-	background-color: #0e0e18;
+	background-color: var(--sidebar-first-color, white);
 	z-index: 1;
 }
 
@@ -134,14 +156,6 @@ i {
 	text-align: center;
 	cursor: pointer;
 }
-.sidebar .sidebar-toggle-button,
-.sidebar.active .sidebar-toggle-button:hover {
-	background-color: #1d1b30
-}
-.sidebar.active .sidebar-toggle-button,
-.sidebar .sidebar-toggle-button:hover {
-	background-color: #0e0e18;
-}
 
 .company-name {
 	margin-left: 63px;
@@ -151,7 +165,6 @@ i {
 	width: 100%;
 	margin-top: 9px;
 	height: 54px;
-	background-color: #0e0e18;
 	border-radius: 10px;
 }
 .sidebar-search input {
@@ -159,8 +172,7 @@ i {
 	height: 100%;
 	padding-left: 54px;
 	border-radius: 10px;
-	color: white;
-	background-color: #1d1b30;
+	background-color: transparent;
 	border: 0;
 	font-size: 18px;
 }
@@ -169,9 +181,10 @@ i {
 	height: 54px;
 	position: absolute;
 	text-align: center;
-	border-radius: 10px 0 0 10px;
+	border-radius: 10px;
 	cursor: pointer;
 }
+
 
 @media screen and (max-width: 600px) {
 	.sidebar .sidebar-header {
@@ -233,7 +246,7 @@ i {
 }
 .sidebar .nav-links li {
 	width: 54px;
-	margin-right: calc(100% - var(--sidebar-width-, 240px) + 18px);
+	margin-right: calc(100% - var(--sidebar-width, 240px) + 18px);
 }
 .sidebar.active .nav-links li {
 	width: 100%;
@@ -258,7 +271,7 @@ i {
 	width: 100%;
 	height: 100%;
 	line-height: 54px;
-	color: white;
+	color: var(--sidebar-text-color, black);
 	border-radius: 10px;
 	text-decoration: none;
 	display: inline-flex;
@@ -284,28 +297,9 @@ i {
 	opacity: 1;
 }
 .nav-links li:hover a {
-	color: #0e0e18;
-	background-color: white;
+	color: var(--sidebar-first-color, white);
+	background-color: var(--sidebar-navigation-color, black);
 }
-/* Custom scrollbar
-	.nav-links::-webkit-scrollbar-button {
-		display: none;
-	}
-	.nav-links::-webkit-scrollbar {
-		border-radius: 100px;
-		width: 9px;
-	}
-	.nav-links::-webkit-scrollbar-track {
-		border-radius: 100px;
-		background-color: #1d1b30;
-		border: 1px solid #0e0e18;
-	}
-	.nav-links::-webkit-scrollbar-thumb {
-		border-radius: 100px;
-		background-color: #0e0e18;
-		border: 2px solid #1d1b30;
-	}
-*/
 
 .nav-links::-webkit-scrollbar-button {
 	display: none;
@@ -321,8 +315,8 @@ i {
 .nav-links::-webkit-scrollbar-thumb {
 	min-height: 72px;
 	border-radius: 100px;
-	border: 3px solid #0e0e18;
-	background-color: rgba(255,255,255,0.25);
+	border: 3px solid var(--sidebar-first-color, white);
+	background-color: var(--sidebar-scrollbar-color, rgba(255, 255, 255, 0.25));
 }
 
 
@@ -336,8 +330,8 @@ i {
 	text-align: center;
 	line-height: 50px;
 	left: 63px;
-	color: #0e0e18;
-	background-color: white;
+	color: var(--sidebar-first-color, white);
+	background-color: var(--sidebar-navigation-color, black);
 	border-radius: 10px;
 	opacity: 0;
 	transform: translateX(0);
@@ -357,21 +351,22 @@ i {
 /* user */
 
 .user {
-	width: var(--sidebar-width-, 240px);
+	width: var(--sidebar-width, 240px);
 	position: fixed;
 	overflow: hidden;
 	left: 0;
 	bottom: 0;
 	height: 72px;
 	display: inline-flex;
-	background-color: #0e0e18;
+	color: var(--sidebar-user-text-color, white);
+	background-color: var(--sidebar-first-color, white);
 }
 
 .profile {
 	width: 100%;
 	height: 100%;
 	padding: 9px;
-	background-color: #1d1b30;
+	background-color: var(--sidebar-second-color, black);
 }
 .profile-info {
 	margin-left: 63px;
@@ -379,7 +374,6 @@ i {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
-	/*flex-wrap: wrap;*/
 	overflow: hidden;
 }
 
@@ -389,14 +383,10 @@ i {
 	position: absolute;
 	text-align: center;
 	line-height: 50px;
-	background-color: #1d1b30;
 	border-radius: 10px;
 	cursor: pointer;
 	right: 9px;
 	bottom: 9px;
-}
-.exit-button:hover {
-	background-color: #0e0e18;
 }
 
 .sidebar.active .user-avatar,
@@ -419,9 +409,7 @@ i {
 
 
 
-
-
-/* Vakot Ind. */
+/* content */
 
 .container {
 	display: flex;
@@ -485,7 +473,3 @@ i {
 		content: 'Loading';
 	}
 }
-
-
-
-
